@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-as%v)ssjtt71s$xh9#b7=e07vwn=)tpo&j%87)$@m*7j_s*_*-'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = os.environ.get("debug","False").lower()=="true"
+DEBUG = os.environ.get("DEBUG","False").lower()=="true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS","*").split(" ")
 
 
 # Application definition
@@ -82,7 +82,8 @@ DATABASES = {
     }
 }
 
-DATABASES['default']=dj_database_url.parse("postgresql://db_parking_2v6y_user:szhgAHW7Wc4b1k59moren2hRrGBEbMCz@dpg-d0u5i1u3jp1c73ffbvgg-a.oregon-postgres.render.com/db_parking_2v6y")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default']=dj_database_url.parse(database_url)
 
 #postgresql://db_parking_2v6y_user:szhgAHW7Wc4b1k59moren2hRrGBEbMCz@dpg-d0u5i1u3jp1c73ffbvgg-a.oregon-postgres.render.com/db_parking_2v6y
 
