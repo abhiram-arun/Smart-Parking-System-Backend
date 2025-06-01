@@ -41,7 +41,7 @@ def vehicle_logs(request):
             'plate_number': log.plate_number,
             'entry_time': log.entry_time,
             'exit_time': log.exit_time,
-            'authorised': log.authorised  # ✅ include this
+            'authorised': log.authorised 
         }
         for log in logs
     ]

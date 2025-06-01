@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import dj_database_url
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-as%v)ssjtt71s$xh9#b7=e07vwn=)tpo&j%87)$@m*7j_s*_*-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+DEBUG = os.environ.get("debug","False").lower()=="true"
 
 ALLOWED_HOSTS = []
 
@@ -79,6 +81,10 @@ DATABASES = {
         'NAME': 'anpr_db',
     }
 }
+
+DATABASES['default']=dj_database_url.parse("postgresql://db_parking_2v6y_user:szhgAHW7Wc4b1k59moren2hRrGBEbMCz@dpg-d0u5i1u3jp1c73ffbvgg-a.oregon-postgres.render.com/db_parking_2v6y")
+
+#postgresql://db_parking_2v6y_user:szhgAHW7Wc4b1k59moren2hRrGBEbMCz@dpg-d0u5i1u3jp1c73ffbvgg-a.oregon-postgres.render.com/db_parking_2v6y
 
 
 # Password validation
